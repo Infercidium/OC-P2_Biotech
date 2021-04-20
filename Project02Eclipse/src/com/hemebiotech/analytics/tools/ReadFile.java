@@ -3,27 +3,16 @@ package com.hemebiotech.analytics.tools;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.io.IOException;
 
 public class ReadFile {
     public ReadFile() {
     }
 
-    public void read(ArrayList<String> list, String fichier) {
+    public BufferedReader read(String fichier) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fichier));
-            String line = reader.readLine();
-
-            while (line != null)
-            {
-                if (list.contains(line)) {
-                    line = reader.readLine();
-                }else{
-                    list.add(line);
-                }
-            }
-        reader.close();
+                    return reader;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Unable to open file");
@@ -31,7 +20,27 @@ public class ReadFile {
             e.printStackTrace();
             System.out.println("Unable to read file");
         }
-        // Mise par ordre table ascii (alphabétique, pas de gestion maj/min)
-        Collections.sort(list);
+        return null;
+    }
+
+    public void close(BufferedReader read)
+    {
+        try {
+            read.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Unable to close file or nonexistent file");
+        }
+    }
+
+    public String next(BufferedReader read)
+    {
+        try {
+            return read.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Unable to read the next line of the file");
+            return null;
+        }
     }
 }
