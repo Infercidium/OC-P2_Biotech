@@ -15,7 +15,7 @@ public class Writter {
                 FileWriter writer = new FileWriter("result.out");
                 for (int i = 0; i < list.size(); i++)
                 {
-                    writer.write(new StringBuilder().append(list.get(i)).append(" = ").append(counter.occurence(i, list, fichier)).append("\n").toString());
+                    writer.write(list.get(i) + " = " + counter.occurence(i, list, fichier) + "\n");
                 }
                 writer.close();
             } catch (IOException e) {

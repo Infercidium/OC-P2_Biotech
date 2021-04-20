@@ -11,8 +11,7 @@ public class ReadFile {
 
     public BufferedReader read(String fichier) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fichier));
-                    return reader;
+            return new BufferedReader(new FileReader(fichier));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Unable to open file");
