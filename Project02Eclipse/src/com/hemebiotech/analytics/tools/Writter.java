@@ -8,13 +8,14 @@ public class Writter {
     public Writter() {}
 
     // Méthode permettant l'écriture de la liste dans le fichier.
-    public void written(ArrayList<String> list, int s, int occurence)
+    public void written(ArrayList<String> list, String fichier)
         {
+           Counter counter = new Counter();
             try {
                 FileWriter writer = new FileWriter("result.out");
-                for (int i = 0; i < s; i++)
+                for (int i = 0; i < list.size(); i++)
                 {
-                    writer.write(list.get(i) + " = " + occurence + "\n");
+                    writer.write(new StringBuilder().append(list.get(i)).append(" = ").append(counter.occurence(i, list, fichier)).append("\n").toString());
                 }
                 writer.close();
             } catch (IOException e) {
