@@ -1,4 +1,4 @@
-fever
+Fever
 dialated pupils
 dry mouth
 inflamation
@@ -7,7 +7,7 @@ stomach pain
 high blood pressure
 stiff neck
 cough
-insomnia
+Insomnia
 headache
 insomnia
 constricted pupils

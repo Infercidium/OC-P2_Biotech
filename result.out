@@ -1,3 +1,5 @@
+List of Symptom(s): 
+
 anxiety = 5
 arrhythmias = 3
 blindness = 1
@@ -21,3 +23,6 @@ stiff neck = 4
 stomach pain = 3
 tremor = 4
 water retention = 1
+
+ Different symptom(s) = 23
+ Number of symptom(s) = 100
