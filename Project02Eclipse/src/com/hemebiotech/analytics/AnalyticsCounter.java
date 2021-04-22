@@ -6,7 +6,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * Class containing the sort and write methods
+ *
+ */
 public class AnalyticsCounter
 {
     /**

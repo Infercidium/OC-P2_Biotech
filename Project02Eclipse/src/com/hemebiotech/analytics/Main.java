@@ -1,5 +1,8 @@
 package com.hemebiotech.analytics;
 
+/**
+ * The basic Main Class
+ */
 public class Main {
     public static void main(String[] args)
     {
