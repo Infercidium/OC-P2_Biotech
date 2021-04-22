@@ -10,6 +10,7 @@ import java.util.TreeMap;
 public class AnalyticsCounter
 {
     /**
+     * returns the inserted list sorted in ASCII
      *
      * @param result a list of unsorted symptoms
      * @return a list of all symptoms by ascii order duplicates are possible / probable
@@ -21,6 +22,8 @@ public class AnalyticsCounter
     }
 
     /**
+     * turns a list into a map
+     * duplicates become the map value
      *
      * @param result a list of symptoms
      * @return a map of symptoms, map key is the symptom and map value is the occurence
@@ -38,6 +41,7 @@ public class AnalyticsCounter
     }
 
     /**
+     *transcribe a map between a title and a summary in a file
      *
      * @param counter a map of symptoms
      */
