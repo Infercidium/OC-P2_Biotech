@@ -7,13 +7,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 /**
- * Class containing the sort and write methods
- *
+ * Class containing 4 methods, from extracting an input file to creating an output file
  */
 public class AnalyticsCounter
 {
     /**
-     * returns the inserted list sorted in ASCII
+     * Open a txt file, add each symptom line to a list, then close the file
+     *
+     * @param fichier file absolute or relative path allowing to reach the txt file
+     * @return list containing the symptoms of the txt file, possible duplicate, empty list if no txt file
+     */
+    public List<String> reader(String fichier)
+    {
+        ISymptomReader read = new ReadSymptomDataFromFile(fichier);
+        return read.GetSymptoms();
+    }
+    /**
+     * Returns the inserted list sorted in ASCII
      *
      * @param result a list of unsorted symptoms
      * @return a list of all symptoms by ascii order duplicates are possible / probable
@@ -23,10 +33,9 @@ public class AnalyticsCounter
         Collections.sort(result);
         return result;
     }
-
     /**
-     * turns a list into a map
-     * duplicates become the map value
+     * Turns a list into a map
+     * Duplicates become the map value
      *
      * @param result a list of symptoms
      * @return a map of symptoms, map key is the symptom and map value is the occurence
@@ -42,14 +51,14 @@ public class AnalyticsCounter
         }
         return counter;
     }
-
     /**
-     *transcribe a map between a title and a summary in a file
+     *Transcribe a map between a title and a summary in a file
      *
      * @param counter a map of symptoms
      */
    public void writter(Map<String, Integer> counter)
     {
+        int totalSympt = 0;
         try {
             FileWriter writer = new FileWriter("result.out");
             writer.write("List of Symptom(s): \n\n");
@@ -65,5 +74,4 @@ public class AnalyticsCounter
             System.out.println("Unable to create file or written");
         }
     }
-    private int totalSympt = 0;
 }
