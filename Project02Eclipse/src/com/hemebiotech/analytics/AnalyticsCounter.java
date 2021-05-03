@@ -17,10 +17,10 @@ public class AnalyticsCounter
      * @param fichier file absolute or relative path allowing to reach the txt file
      * @return list containing the symptoms of the txt file, possible duplicate, empty list if no txt file
      */
-    public List<String> reader(String fichier)
+    public List<String> read(String fichier)
     {
         ISymptomReader read = new ReadSymptomDataFromFile(fichier);
-        return read.GetSymptoms();
+        return read.getSymptoms();
     }
     /**
      * Returns the inserted list sorted in ASCII
@@ -28,7 +28,7 @@ public class AnalyticsCounter
      * @param result a list of unsorted symptoms
      * @return a list of all symptoms by ascii order duplicates are possible / probable
      */
-    public List<String> sorter(List<String> result)
+    public List<String> sort(List<String> result)
     {
         Collections.sort(result);
         return result;
@@ -40,7 +40,7 @@ public class AnalyticsCounter
      * @param result a list of symptoms
      * @return a map of symptoms, map key is the symptom and map value is the occurence
      */
-    public Map<String, Integer> counter(List<String> result) {
+    public Map<String, Integer> count(List<String> result) {
         Map<String, Integer> counter = new TreeMap<>();
         for (String s : result) {
             if (counter.containsKey(s)) {
@@ -56,22 +56,29 @@ public class AnalyticsCounter
      *
      * @param counter a map of symptoms
      */
-   public void writter(Map<String, Integer> counter)
-    {
-        int totalSympt = 0;
-        try {
-            FileWriter writer = new FileWriter("result.out");
-            writer.write("List of Symptom(s): \n\n");
-            for (Map.Entry<String, Integer> symptoms : counter.entrySet())
-            {
-                writer.write(symptoms.getKey() + " = " + symptoms.getValue() + "\n");
-                totalSympt += symptoms.getValue();
-            }
-            writer.write("\n Different symptom(s) = " + counter.size() + "\n Number of symptom(s) = " + totalSympt);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Unable to create file or written");
-        }
-    }
+   public void write(Map<String, Integer> counter){
+       int totalSympt = 0;
+       FileWriter writer = null;
+       try {
+           writer = new FileWriter("result.out");
+           writer.write("List of Symptom(s): \n\n");
+           for (Map.Entry<String, Integer> symptoms : counter.entrySet()) {
+               writer.write(symptoms.getKey() + " = " + symptoms.getValue() + "\n");
+               totalSympt += symptoms.getValue();
+           }
+           writer.write("\n Different symptom(s) = " + counter.size() + "\n Number of symptom(s) = " + totalSympt);
+       } catch (IOException e) {
+           e.printStackTrace();
+           System.out.println("Unable to create file or written");
+       } finally {
+           try {
+               if (writer != null) {
+                   writer.close();
+               }
+           } catch (IOException e) {
+               e.printStackTrace();
+               System.out.println("Unable to close file");
+           }
+       }
+   }
 }
