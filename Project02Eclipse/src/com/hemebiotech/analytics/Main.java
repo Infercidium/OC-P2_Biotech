@@ -1,4 +1,10 @@
 package com.hemebiotech.analytics;
+
+
+import java.util.List;
+import java.util.Map;
+
+
 /**
  * The basic Main Class
  */
@@ -12,6 +18,9 @@ public class Main {
         AnalyticsCounter analitics = new AnalyticsCounter();
 
         //Déroulement -> symptoms.txt > reader > sorter > counter > writter > result.out
-        analitics.writter(analitics.counter(analitics.sorter(analitics.reader(fichier))));
+        List<String> resultat = analitics.read(fichier);
+       resultat = analitics.sort(resultat);
+        Map<String, Integer> count = analitics.count(resultat);
+        analitics.write(count);
     }
 }
